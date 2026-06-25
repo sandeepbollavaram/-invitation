@@ -1,7 +1,28 @@
-<!-- Engagement Invitation — Vasantha Lakshmi & Sairam Bharadwaj -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vasantha Lakshmi & Sairam Bharadwaj — Engagement</title>
+<meta name="description" content="You are warmly invited to the engagement ceremony of Vasantha Lakshmi & Sairam Bharadwaj on Sunday, 5 July 2026 at Vijay Gardens, Pulivendula.">
+
+<!-- Open Graph / WhatsApp / Instagram preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sandeepbollavaram.github.io/-invitation/">
+<meta property="og:title" content="Vasantha Lakshmi & Sairam Bharadwaj — Engagement">
+<meta property="og:description" content="Join us for our engagement ceremony on Sunday, 5 July 2026 · Muhurtham at 8:30 AM · Vijay Gardens, Pulivendula">
+<meta property="og:image" content="https://sandeepbollavaram.github.io/-invitation/assets/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vasantha Lakshmi & Sairam Bharadwaj — Engagement">
+<meta name="twitter:description" content="Join us for our engagement ceremony on Sunday, 5 July 2026 at Vijay Gardens, Pulivendula">
+<meta name="twitter:image" content="https://sandeepbollavaram.github.io/-invitation/assets/og-preview.png">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
@@ -35,10 +56,29 @@
     min-height:100vh;
   }
 
-  /* ---- 3D canvas behind everything ---- */
   #scene{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
-  /* ---- shared layout ---- */
+  /* ---- floating controls ---- */
+  .float-ctrl{
+    position:fixed;z-index:50;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:46px;height:46px;
+    font-family:var(--caps);font-size:1.1rem;
+    color:var(--gold-bright);
+    background:rgba(24,4,7,.55);
+    border:1px solid var(--line);
+    border-radius:50%;cursor:pointer;
+    backdrop-filter:blur(8px);
+    transition:border-color .25s, color .25s, transform .15s, background .25s;
+  }
+  .float-ctrl:hover{border-color:var(--gold-bright);transform:translateY(-1px)}
+  .float-ctrl:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px}
+  .float-ctrl.on{background:rgba(201,162,39,.18);border-color:var(--gold-bright)}
+  .music-btn{top:18px;right:18px}
+  .music-btn .icon-off{display:none;opacity:.45;text-decoration:line-through}
+  .music-btn:not(.on) .icon-on{display:none}
+  .music-btn:not(.on) .icon-off{display:block}
+
   .wrap{position:relative;z-index:2;max-width:760px;margin:0 auto;padding:0 24px}
   section{position:relative;z-index:2}
   .eyebrow{
@@ -47,14 +87,11 @@
     margin-bottom:1.4em;
   }
 
-  /* ornamental divider */
   .ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto}
   .ornament .rule{height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold))}
   .ornament .rule.r{background:linear-gradient(90deg,var(--gold),transparent)}
-  .ornament .diamond{width:7px;height:7px;background:var(--gold-bright);transform:rotate(45deg);box-shadow:0 0 12px rgba(243,218,134,.7)}
   .ornament svg{width:34px;height:auto;fill:none;stroke:var(--gold);stroke-width:1.2;opacity:.9}
 
-  /* ---- hero ---- */
   .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 24px 60px}
   .hero .eyebrow{opacity:0;animation:fade 1s ease .3s forwards}
   .names{
@@ -73,21 +110,18 @@
   .scrollcue span{display:block;font-family:var(--caps);font-size:.6rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:.7em}
   .scrollcue .arrow{width:1px;height:34px;margin:0 auto;background:linear-gradient(180deg,var(--gold),transparent);animation:bob 2.2s ease-in-out infinite}
 
-  /* ---- generic block ---- */
   .block{padding:clamp(70px,12vh,130px) 0;text-align:center}
   .block .ornament{margin-bottom:2.2rem}
   .invite-text{font-family:var(--display);font-size:clamp(1.4rem,3.6vw,2rem);line-height:1.55;color:var(--ivory);font-weight:400}
   .invite-text strong{font-weight:600;color:var(--gold-bright);font-style:italic}
   .host{margin-top:2rem;font-family:var(--caps);letter-spacing:.22em;font-size:.78rem;text-transform:uppercase;color:var(--gold)}
 
-  /* ---- countdown ---- */
   .count{display:flex;justify-content:center;gap:clamp(14px,5vw,46px);flex-wrap:wrap;margin-top:.5rem}
   .count .unit{min-width:64px}
   .count .num{font-family:var(--display);font-weight:600;font-size:clamp(2.6rem,8vw,4rem);color:var(--gold-bright);line-height:1;text-shadow:0 0 30px rgba(243,218,134,.25)}
   .count .lab{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em;font-size:.62rem;color:var(--gold);margin-top:.7em}
   .count-done{font-family:var(--display);font-style:italic;font-size:1.8rem;color:var(--gold-bright)}
 
-  /* ---- detail cards ---- */
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:1rem}
   @media(max-width:600px){.cards{grid-template-columns:1fr}}
   .card{
@@ -102,7 +136,18 @@
   .card .small{color:var(--cream);opacity:.82;font-size:1rem;margin-top:.4rem}
   .card .tag{display:inline-block;margin-top:1rem;font-family:var(--caps);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--gold-soft);padding:.45em 1em;border-radius:999px}
 
-  /* ---- map ---- */
+  .cal-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:2rem}
+  .cal-btn{
+    display:inline-flex;align-items:center;gap:.55em;
+    font-family:var(--caps);letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;
+    color:var(--gold-bright);border:1px solid var(--gold);
+    padding:.85em 1.5em;border-radius:999px;
+    background:rgba(24,4,7,.35);cursor:pointer;text-decoration:none;
+    transition:background .25s,color .25s,transform .15s;
+  }
+  .cal-btn:hover{background:var(--gold-bright);color:var(--ink);transform:translateY(-2px)}
+  .cal-btn:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px}
+
   .map-card{display:block;position:relative;margin-top:1rem;border:1px solid var(--line);border-radius:6px;overflow:hidden;cursor:pointer;text-decoration:none}
   .map-card iframe{display:block;width:100%;height:330px;border:0;filter:saturate(.85) contrast(.95);pointer-events:none}
   .map-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,4,7,.05),rgba(24,4,7,.55));display:flex;align-items:flex-end;justify-content:center;padding-bottom:20px;transition:background .3s}
@@ -110,20 +155,12 @@
   .map-btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--caps);letter-spacing:.2em;text-transform:uppercase;font-size:.74rem;color:var(--ink);background:var(--gold-bright);padding:.85em 1.6em;border-radius:999px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
   .map-hint{margin-top:1rem;font-style:italic;font-family:var(--display);color:var(--cream);opacity:.7}
 
-  /* ---- rsvp ---- */
-  .rsvp .invite-text{margin-bottom:1.8rem}
-  .rsvp-name{font-family:var(--display);font-style:italic;font-size:1.5rem;color:var(--ivory);margin-bottom:1.4rem}
-  .call-btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--caps);letter-spacing:.2em;text-transform:uppercase;font-size:.8rem;color:var(--gold-bright);border:1px solid var(--gold);padding:.95em 2em;border-radius:999px;text-decoration:none;transition:background .25s,color .25s,transform .15s}
-  .call-btn:hover{background:var(--gold-bright);color:var(--ink);transform:translateY(-2px)}
-
-  /* ---- footer ---- */
   footer{text-align:center;padding:80px 24px 70px}
   footer .blessing{font-family:var(--display);font-style:italic;font-size:1.3rem;color:var(--cream);opacity:.85}
   footer .fnames{font-family:var(--display);font-size:1.7rem;color:var(--gold-bright);margin-top:.8rem}
   footer .contact{margin-top:1.8rem;font-family:var(--caps);letter-spacing:.14em;font-size:.72rem;text-transform:uppercase;color:var(--gold);opacity:.85}
   footer .contact a{color:var(--gold-bright);text-decoration:none;border-bottom:1px solid var(--line)}
 
-  /* ---- reveal ---- */
   .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
   .reveal.show{opacity:1;transform:none}
 
@@ -137,10 +174,16 @@
     .hero .eyebrow,.names .l1,.names .l2,.names .amp,.hero .occasion,.hero .date,.scrollcue{opacity:1!important}
   }
 </style>
+</head>
+<body>
 
 <canvas id="scene"></canvas>
 
-<!-- HERO -->
+<button class="float-ctrl music-btn" id="musicBtn" type="button" aria-label="Toggle background music" aria-pressed="false">
+  <span class="icon-on" aria-hidden="true">♪</span>
+  <span class="icon-off" aria-hidden="true">♪</span>
+</button>
+
 <header class="hero">
   <p class="eyebrow">Together with their families</p>
 
@@ -151,7 +194,6 @@
   </h1>
 
   <p class="occasion">Engagement Ceremony</p>
-
   <p class="date">Sunday · 5 July 2026</p>
 
   <div class="scrollcue">
@@ -160,7 +202,6 @@
   </div>
 </header>
 
-<!-- INVITATION -->
 <section class="block">
   <div class="wrap reveal">
     <div class="ornament">
@@ -175,7 +216,6 @@
   </div>
 </section>
 
-<!-- COUNTDOWN -->
 <section class="block">
   <div class="wrap reveal">
     <p class="eyebrow">Counting down to the celebration</p>
@@ -188,7 +228,6 @@
   </div>
 </section>
 
-<!-- DETAILS -->
 <section class="block">
   <div class="wrap reveal">
     <p class="eyebrow">The Celebration</p>
@@ -207,10 +246,13 @@
         <span class="tag">First Floor</span>
       </div>
     </div>
+    <div class="cal-actions">
+      <a class="cal-btn" id="gcalBtn" href="#" target="_blank" rel="noopener">📅 Add to Google Calendar</a>
+      <button class="cal-btn" id="icsBtn" type="button">⬇ Save to Calendar (.ics)</button>
+    </div>
   </div>
 </section>
 
-<!-- MAP -->
 <section class="block">
   <div class="wrap reveal">
     <p class="eyebrow">Find Your Way</p>
@@ -227,7 +269,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="reveal">
     <div class="ornament" style="margin-bottom:1.8rem">
@@ -243,26 +284,135 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-/* ---------------- Countdown to 5 July 2026, 8:30 AM IST ---------------- */
-// 8:30 IST == 03:00 UTC
+/* ---------------- Event details ---------------- */
+var EVENT = {
+  title: 'Vasantha Lakshmi & Sairam Bharadwaj — Engagement',
+  startUtc: '20260705T030000Z',
+  endUtc: '20260705T070000Z',
+  location: 'Vijay Gardens, Venkatapuram, Pulivendula, Andhra Pradesh 516390',
+  description: 'Engagement ceremony of Vasantha Lakshmi & Sairam Bharadwaj. Muhurtham at 8:30 AM. Hosted by the Bollavaram Family. Invitation: https://sandeepbollavaram.github.io/-invitation/'
+};
+
+/* ---------------- Add to Calendar ---------------- */
+(function(){
+  var gcal = document.getElementById('gcalBtn');
+  var params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: EVENT.title,
+    dates: EVENT.startUtc + '/' + EVENT.endUtc,
+    details: EVENT.description,
+    location: EVENT.location
+  });
+  gcal.href = 'https://calendar.google.com/calendar/render?' + params.toString();
+
+  document.getElementById('icsBtn').addEventListener('click', function(){
+    var ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Bollavaram Family//Engagement//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:engagement-20260705@sandeepbollavaram.github.io',
+      'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z',
+      'DTSTART:' + EVENT.startUtc,
+      'DTEND:' + EVENT.endUtc,
+      'SUMMARY:' + EVENT.title,
+      'DESCRIPTION:' + EVENT.description.replace(/\n/g, '\\n'),
+      'LOCATION:' + EVENT.location,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+    var blob = new Blob([ics], {type: 'text/calendar;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'engagement-vasantha-sairam.ics';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+})();
+
+/* ---------------- Background music (Web Audio ambient) ---------------- */
+(function(){
+  var btn = document.getElementById('musicBtn');
+  var ctx, master, playing = false, nodes = [];
+
+  function buildAmbient(){
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    master = ctx.createGain();
+    master.gain.value = 0.22;
+    master.connect(ctx.destination);
+
+    var filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 1200;
+    filter.connect(master);
+
+    var freqs = [261.63, 329.63, 392.0, 493.88];
+    freqs.forEach(function(f, i){
+      var osc = ctx.createOscillator();
+      var g = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = f;
+      g.gain.value = 0.06 + (i === 0 ? 0.04 : 0);
+      osc.connect(g);
+      g.connect(filter);
+      osc.start();
+      nodes.push(osc, g);
+    });
+
+    var lfo = ctx.createOscillator();
+    var lfoG = ctx.createGain();
+    lfo.frequency.value = 0.08;
+    lfoG.gain.value = 0.04;
+    lfo.connect(lfoG);
+    lfoG.connect(master.gain);
+    lfo.start();
+    nodes.push(lfo, lfoG);
+  }
+
+  function startMusic(){
+    if(!ctx) buildAmbient();
+    if(ctx.state === 'suspended') ctx.resume();
+    playing = true;
+    btn.classList.add('on');
+    btn.setAttribute('aria-pressed', 'true');
+    btn.setAttribute('aria-label', 'Mute background music');
+  }
+
+  function stopMusic(){
+    if(ctx && ctx.state === 'running'){
+      ctx.suspend();
+    }
+    playing = false;
+    btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+    btn.setAttribute('aria-label', 'Play background music');
+  }
+
+  btn.addEventListener('click', function(){
+    if(playing) stopMusic();
+    else startMusic();
+  });
+})();
+
+/* ---------------- Countdown ---------------- */
 var target = Date.UTC(2026, 6, 5, 3, 0, 0);
 function pad(n){return (n<10?'0':'')+n;}
 function tick(){
   var diff = target - Date.now();
   if(diff <= 0){
-    var c = document.getElementById('count');
-    c.innerHTML = '<div class="count-done">The day has arrived — celebrate with us! ✦</div>';
+    document.getElementById('count').innerHTML = '<div class="count-done">The day has arrived — celebrate with us! ✦</div>';
     clearInterval(timer);
     return;
   }
-  var d = Math.floor(diff/86400000);
-  var h = Math.floor(diff%86400000/3600000);
-  var m = Math.floor(diff%3600000/60000);
-  var s = Math.floor(diff%60000/1000);
-  document.getElementById('d').textContent = d;
-  document.getElementById('h').textContent = pad(h);
-  document.getElementById('m').textContent = pad(m);
-  document.getElementById('s').textContent = pad(s);
+  document.getElementById('d').textContent = Math.floor(diff/86400000);
+  document.getElementById('h').textContent = pad(Math.floor(diff%86400000/3600000));
+  document.getElementById('m').textContent = pad(Math.floor(diff%3600000/60000));
+  document.getElementById('s').textContent = pad(Math.floor(diff%60000/1000));
 }
 var timer = setInterval(tick, 1000); tick();
 
@@ -272,7 +422,7 @@ var io = new IntersectionObserver(function(es){
 },{threshold:.18});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 
-/* ---------------- 3D scene: interlocked gold rings + starfield ---------------- */
+/* ---------------- 3D scene ---------------- */
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canvas = document.getElementById('scene');
@@ -284,13 +434,11 @@ document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
   var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100);
   camera.position.set(0, 0, 9);
 
-  // lights for metallic glint
   scene.add(new THREE.AmbientLight(0x55301a, 1.1));
   var key = new THREE.PointLight(0xffe6a8, 2.2, 60); key.position.set(6,8,10); scene.add(key);
   var fill = new THREE.PointLight(0xff6f8a, 1.1, 60); fill.position.set(-8,-4,6); scene.add(fill);
   var rim = new THREE.PointLight(0xfff3d0, 1.4, 60); rim.position.set(0,-2,-8); scene.add(rim);
 
-  // gold material
   function goldMat(){
     return new THREE.MeshStandardMaterial({
       color:0xc9a227, metalness:1.0, roughness:0.28,
@@ -303,12 +451,10 @@ document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
   var ringB = new THREE.Mesh(new THREE.TorusGeometry(1.7, 0.16, 40, 160), goldMat());
   ringA.rotation.x = 1.15; ringA.position.x = -0.85;
   ringB.rotation.x = 1.15; ringB.rotation.y = 0.9; ringB.position.x = 0.85;
-
   ringGroup.add(ringA); ringGroup.add(ringB);
   ringGroup.position.y = 0.4;
   scene.add(ringGroup);
 
-  // sparkle particles
   var COUNT = 1300;
   var pos = new Float32Array(COUNT*3);
   for(var i=0;i<COUNT;i++){
@@ -322,8 +468,7 @@ document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
   var pg = new THREE.BufferGeometry();
   pg.setAttribute('position', new THREE.BufferAttribute(pos,3));
   var pm = new THREE.PointsMaterial({color:0xf3da86, size:0.07, transparent:true, opacity:.9, blending:THREE.AdditiveBlending, depthWrite:false});
-  var stars = new THREE.Points(pg, pm);
-  scene.add(stars);
+  scene.add(new THREE.Points(pg, pm));
 
   var scrollY = 0;
   window.addEventListener('scroll', function(){ scrollY = window.scrollY; }, {passive:true});
@@ -343,15 +488,12 @@ document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
       ringGroup.rotation.z = Math.sin(t)*0.06;
       ringA.rotation.z += 0.004;
       ringB.rotation.z -= 0.004;
-      stars.rotation.y += 0.0006;
       ringGroup.position.y = 0.4 + Math.sin(t*0.8)*0.12;
     }
-    // fade rings out as user scrolls past hero
     var vh = window.innerHeight || 800;
     var f = Math.max(0, 1 - scrollY/(vh*0.85));
     ringA.material.opacity = f;
     ringB.material.opacity = f;
-    ringGroup.position.x = 0; // keep centered
     ringGroup.scale.setScalar(0.8 + f*0.2);
     renderer.render(scene, camera);
     requestAnimationFrame(loop);
@@ -359,3 +501,5 @@ document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
   loop();
 })();
 </script>
+</body>
+</html>
