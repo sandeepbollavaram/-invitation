@@ -250,7 +250,6 @@
     </div>
     <div class="cal-actions">
       <a class="cal-btn" id="gcalBtn" href="#" target="_blank" rel="noopener">📅 Add to Google Calendar</a>
-      <button class="cal-btn" id="icsBtn" type="button">⬇ Save to Calendar (.ics)</button>
     </div>
   </div>
 </section>
@@ -307,35 +306,6 @@ var EVENT = {
     location: EVENT.location
   });
   gcal.href = 'https://calendar.google.com/calendar/render?' + params.toString();
-
-  document.getElementById('icsBtn').addEventListener('click', function(){
-    var ics = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//Bollavaram Family//Engagement//EN',
-      'CALSCALE:GREGORIAN',
-      'METHOD:PUBLISH',
-      'BEGIN:VEVENT',
-      'UID:engagement-20260705@sandeepbollavaram.github.io',
-      'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z',
-      'DTSTART:' + EVENT.startUtc,
-      'DTEND:' + EVENT.endUtc,
-      'SUMMARY:' + EVENT.title,
-      'DESCRIPTION:' + EVENT.description.replace(/\n/g, '\\n'),
-      'LOCATION:' + EVENT.location,
-      'END:VEVENT',
-      'END:VCALENDAR'
-    ].join('\r\n');
-    var blob = new Blob([ics], {type: 'text/calendar;charset=utf-8'});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'engagement-vasantha-sairam.ics';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  });
 })();
 
 /* ---------------- Background music ---------------- */
