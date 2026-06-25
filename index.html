@@ -160,6 +160,7 @@
   footer .fnames{font-family:var(--display);font-size:1.7rem;color:var(--gold-bright);margin-top:.8rem}
   footer .contact{margin-top:1.8rem;font-family:var(--caps);letter-spacing:.14em;font-size:.72rem;text-transform:uppercase;color:var(--gold);opacity:.85}
   footer .contact a{color:var(--gold-bright);text-decoration:none;border-bottom:1px solid var(--line)}
+  footer .music-credit{margin-top:1rem;font-family:var(--caps);letter-spacing:.1em;font-size:.58rem;text-transform:uppercase;color:var(--gold);opacity:.45}
 
   .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
   .reveal.show{opacity:1;transform:none}
@@ -179,10 +180,11 @@
 
 <canvas id="scene"></canvas>
 
-<button class="float-ctrl music-btn" id="musicBtn" type="button" aria-label="Toggle background music" aria-pressed="false">
+<button class="float-ctrl music-btn" id="musicBtn" type="button" aria-label="Play background music" aria-pressed="false">
   <span class="icon-on" aria-hidden="true">♪</span>
   <span class="icon-off" aria-hidden="true">♪</span>
 </button>
+<audio id="bgMusic" loop preload="metadata" src="assets/music.mp3"></audio>
 
 <header class="hero">
   <p class="eyebrow">Together with their families</p>
@@ -279,6 +281,7 @@
     <p class="blessing">With love and blessings,<br>the Bollavaram Family</p>
     <p class="fnames">Vasantha Lakshmi &amp; Sairam Bharadwaj</p>
     <p class="contact">For directions &amp; enquiries · Sandeep Kumar Bollavaram · <a href="tel:+916305390913">63053 90913</a></p>
+    <p class="music-credit">Music · Canon in D Major · Kevin MacLeod</p>
   </div>
 </footer>
 
@@ -335,68 +338,28 @@ var EVENT = {
   });
 })();
 
-/* ---------------- Background music (Web Audio ambient) ---------------- */
+/* ---------------- Background music ---------------- */
 (function(){
   var btn = document.getElementById('musicBtn');
-  var ctx, master, playing = false, nodes = [];
+  var audio = document.getElementById('bgMusic');
+  audio.volume = 0.4;
 
-  function buildAmbient(){
-    ctx = new (window.AudioContext || window.webkitAudioContext)();
-    master = ctx.createGain();
-    master.gain.value = 0.22;
-    master.connect(ctx.destination);
-
-    var filter = ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.value = 1200;
-    filter.connect(master);
-
-    var freqs = [261.63, 329.63, 392.0, 493.88];
-    freqs.forEach(function(f, i){
-      var osc = ctx.createOscillator();
-      var g = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.value = f;
-      g.gain.value = 0.06 + (i === 0 ? 0.04 : 0);
-      osc.connect(g);
-      g.connect(filter);
-      osc.start();
-      nodes.push(osc, g);
-    });
-
-    var lfo = ctx.createOscillator();
-    var lfoG = ctx.createGain();
-    lfo.frequency.value = 0.08;
-    lfoG.gain.value = 0.04;
-    lfo.connect(lfoG);
-    lfoG.connect(master.gain);
-    lfo.start();
-    nodes.push(lfo, lfoG);
-  }
-
-  function startMusic(){
-    if(!ctx) buildAmbient();
-    if(ctx.state === 'suspended') ctx.resume();
-    playing = true;
-    btn.classList.add('on');
-    btn.setAttribute('aria-pressed', 'true');
-    btn.setAttribute('aria-label', 'Mute background music');
-  }
-
-  function stopMusic(){
-    if(ctx && ctx.state === 'running'){
-      ctx.suspend();
-    }
-    playing = false;
-    btn.classList.remove('on');
-    btn.setAttribute('aria-pressed', 'false');
-    btn.setAttribute('aria-label', 'Play background music');
+  function setPlaying(on){
+    btn.classList.toggle('on', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.setAttribute('aria-label', on ? 'Mute background music' : 'Play background music');
   }
 
   btn.addEventListener('click', function(){
-    if(playing) stopMusic();
-    else startMusic();
+    if(audio.paused){
+      audio.play().then(function(){ setPlaying(true); }).catch(function(){});
+    } else {
+      audio.pause();
+      setPlaying(false);
+    }
   });
+
+  audio.addEventListener('ended', function(){ setPlaying(false); });
 })();
 
 /* ---------------- Countdown ---------------- */
